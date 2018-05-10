@@ -3,7 +3,7 @@ Words analysis
 
 Words analyses by Amardjia Amine.
 
-https://github.com/Layto888/words
+https://github.com/Layto888/Words-Analysis
 
 Free software utility which allows you to find the most frequent phrases
 and frequencies of words. French and English language texts are supported.
