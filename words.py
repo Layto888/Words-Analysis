@@ -103,7 +103,6 @@ class Words:
                      for sentence in sentences if len(sentence) > 1]
         return sentences
 
-
 # run the program
 def run(filename, write_it):
     wa = Words(filename)
@@ -125,26 +124,19 @@ def run(filename, write_it):
 def display(wa):
     """Display all the stuffs on the screen"""
     print('Total word count: ', len(wa.words_list(wa.normalized_text)))
-
     print('Number of different words: ',
           len(wa.differents_words_list(wa.normalized_text)))
-
     print('Total number of characters: ', len(wa.normal_text))
     print('Number of characters without spaces: ',
           wa.all_characters_without_spaces(wa.normal_text))
-
     print('Number of spaces: ', wa.number_spaces(wa.normal_text))
-
     print('Sentence count: ', len(wa.sentence_split(wa.normalized_text)))
     print('Average sentence length (Words): ',
           wa.average_sentence_length(wa.normalized_text))
-
     print('Max sentence length (Characters): ',
           wa.max_sentence_length(wa.normalized_text))
-
     print('Min sentence length (Characters): ',
           wa.min_sentence_length(wa.normalized_text))
-
     print('Lexical density: ',
           lexical_density(wa.words_list(wa.normalized_text)), ' %')
     print('\n')
