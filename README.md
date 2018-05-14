@@ -11,11 +11,11 @@ It also counts number of words, characters, the lexical density,
 sentences...etc.
 
 Usage in command line:
-```python
+```dos
 >>> python words.py -f [filename.txt] -w [True/False]
 >>> -h : for help.
 ```
 Usage example:
-```python
+```dos
 >>> python words.py -f test.txt -w True
 ```
