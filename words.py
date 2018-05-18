@@ -6,6 +6,8 @@ and frequencies of words. French and English language texts are supported.
 It also counts number of words, characters, the lexical density,
 sentences...etc.
 
+https://github.com/Layto888/Words-Analysis
+
 Usage in command line: python words.py -f [filename.txt] -w [True/False]
 -h : for help.
 
@@ -19,6 +21,8 @@ from collections import Counter
 from contextlib import redirect_stdout
 
 MAX_DIPLAY = 10
+FILE_LEXI = "lexi.wd"
+FRENCH_LIST_LENGTH = 78
 
 
 class Words:
@@ -103,6 +107,7 @@ class Words:
                      for sentence in sentences if len(sentence) > 1]
         return sentences
 
+
 # run the program
 def run(filename, write_it):
     wa = Words(filename)
@@ -138,7 +143,9 @@ def display(wa):
     print('Min sentence length (Characters): ',
           wa.min_sentence_length(wa.normalized_text))
     print('Lexical density: ',
-          lexical_density(wa.words_list(wa.normalized_text)), ' %')
+          lexical_density(wa.words_list(wa.normalized_text), FILE_LEXI), ' %')
+    print('Language: ',
+          deduce_language(wa.words_list(wa.normalized_text), FILE_LEXI))
     print('\n')
 
 
@@ -164,7 +171,7 @@ def display_top_words(wa, max_display):
             break
 
 
-def lexical_density(words_list):
+def lexical_density(words_list, lexi_file_name):
     """ calculates the lexical density.
     L_d = (N_lex / N) * 100
     Where:
@@ -179,7 +186,7 @@ def lexical_density(words_list):
     l_d = 0
     n_lex = 0
     n = 0
-    with open('lexi.wd', "r") as fp:
+    with open(lexi_file_name, "r") as fp:
         lexical_words = fp.read()
     lexical_words = lexical_words.split(',')
 
@@ -191,6 +198,25 @@ def lexical_density(words_list):
     n = len(words_list)
     l_d = (n_lex / n) * 100
     return l_d
+
+
+def deduce_language(words_list, lexi_file_name):
+    """
+    This function will deduce language between French and English.
+    Using the lexical words found on the text.
+    """
+    with open(lexi_file_name, "r") as fp:
+        lexical_words = fp.read()
+    lexical_words = lexical_words.split(',')
+
+    for word in words_list:
+        if word in lexical_words:
+            if lexical_words.index(word) <= FRENCH_LIST_LENGTH:
+                return 'French'
+            else:
+                return 'English'
+
+    return 'Not found'
 
 
 def main():

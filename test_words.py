@@ -92,6 +92,9 @@ class TestWordsAnalyser(unittest.TestCase):
                              self.inp[12].lower()), self.exp[12]
                          )
 
+    def test_deduce_language(self):
+        pass
+
 
 if __name__ == '__main__':
     unittest.main()
