@@ -1,5 +1,5 @@
 # words
-Words analysis
+Words analysis by Amardjia Amine
 
 Words analyses by Amardjia Amine.
 
