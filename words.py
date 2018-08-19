@@ -16,13 +16,20 @@ Usage example: python words.py -f test.txt -w True
 import argparse
 import re
 import sys
+import platform
 import operator
 from collections import Counter
 from contextlib import redirect_stdout
 
+
 MAX_DIPLAY = 10
 FILE_LEXI = "lexi.wd"
 FRENCH_LIST_LENGTH = 78
+
+if platform.system() == 'Linux':
+    DEFAULT_CODEC = "ISO-8859-1"
+elif platform.system() == 'Windows':
+    DEFAULT_CODEC = None
 
 
 class Words:
@@ -32,7 +39,7 @@ class Words:
         Input : text file name
         Do some operations to a text and return results.
         """
-        with open(filename, "r") as fp:
+        with open(filename, "r", encoding=DEFAULT_CODEC) as fp:
             self.normal_text = fp.read().strip()
         self.normalized_text = self.normalize_text(self.normal_text)
 
@@ -121,9 +128,9 @@ def run(filename, write_it):
                 display(wa)
                 # display the top 'X' occurrences words
                 display_top_words(wa, MAX_DIPLAY)
-    else:
-        display(wa)
-        display_top_words(wa, MAX_DIPLAY)
+
+    display(wa)
+    display_top_words(wa, MAX_DIPLAY)
 
 
 def display(wa):
@@ -186,7 +193,7 @@ def lexical_density(words_list, lexi_file_name):
     l_d = 0
     n_lex = 0
     n = 0
-    with open(lexi_file_name, "r") as fp:
+    with open(lexi_file_name, "r", encoding=DEFAULT_CODEC) as fp:
         lexical_words = fp.read()
     lexical_words = lexical_words.split(',')
 
@@ -205,7 +212,7 @@ def deduce_language(words_list, lexi_file_name):
     This function will deduce language between French and English.
     Using the lexical words found on the text.
     """
-    with open(lexi_file_name, "r") as fp:
+    with open(lexi_file_name, "r", encoding=DEFAULT_CODEC) as fp:
         lexical_words = fp.read()
     lexical_words = lexical_words.split(',')
 
@@ -230,6 +237,7 @@ def main():
 
     args = parser.parse_args()
     run(args.file_name, args.write_it)
+    print('Done.')
     return 0
 
 
