@@ -231,12 +231,12 @@ def main():
     parser.add_argument('-f', '--file_name', default='test.txt', required=True,
                         help='The text file to analyze.', type=str)
 
-    parser.add_argument('-w', '--write_it', default=False,
-                        help='Write the output into a file text'
+    parser.add_argument('-d', '--display', default=False,
+                        help='display the output into a text file'
                         ' use True/False to specify', type=bool)
 
     args = parser.parse_args()
-    run(args.file_name, args.write_it)
+    run(args.file_name, args.display)
     print('Done.')
     return 0
 
