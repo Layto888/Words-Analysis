@@ -11,7 +11,7 @@ sentences...etc.
 
 Usage in command line:
 ```dos
->>> python words.py -f [filename.txt] -w [True/False]
+>>> python words.py -f [filename.txt] -d [True/False]
 >>> -h : for help.
 ```
 Usage example:

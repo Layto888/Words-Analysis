@@ -8,7 +8,7 @@ sentences...etc.
 
 https://github.com/Layto888/Words-Analysis
 
-Usage in command line: python words.py -f [filename.txt] -w [True/False]
+Usage in command line: python words.py -f [filename.txt] -d [True/False]
 -h : for help.
 
 Usage example: python words.py -f test.txt -d True
