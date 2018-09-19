@@ -11,7 +11,7 @@ https://github.com/Layto888/Words-Analysis
 Usage in command line: python words.py -f [filename.txt] -w [True/False]
 -h : for help.
 
-Usage example: python words.py -f test.txt -w True
+Usage example: python words.py -f test.txt -d True
 """
 import argparse
 import re

@@ -16,5 +16,5 @@ Usage in command line:
 ```
 Usage example:
 ```dos
->>> python words.py -f test.txt -w True
+>>> python words.py -f test.txt -d True
 ```
