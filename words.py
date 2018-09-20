@@ -155,9 +155,8 @@ def display(wa):
           .format(wa.min_sentence_length(wa.normalized_text)))
     print('Lexical density: {0:.2f} %'
           .format(lexical_density(wa.words_list(wa.normalized_text), FILE_LEXI)))
-    print('Language: {}'
+    print('Language: {} \n'
           .format(deduce_language(wa.words_list(wa.normalized_text), FILE_LEXI)))
-    print('\n')
 
 
 def display_top_words(wa, max_display):
@@ -165,8 +164,8 @@ def display_top_words(wa, max_display):
     counts = Counter(wa.words_list(wa.normalized_text))
     sorted_occurences = sorted(
         counts.items(), key=operator.itemgetter(1), reverse=True)
-    print('Top 10 recurring words:\n')
 
+    print('Top 10 recurring words:\n')
     print('{0:<30}{1:<30}{2:<30}'.format('# Ref', 'Occurrence', 'Perc'))
 
     for occurence in sorted_occurences:
