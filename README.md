@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Layto888/Words-Analysis.svg?branch=master)](https://travis-ci.org/Layto888/Words-Analysis/)
 # words
-Words analysis by Amardjia Amine
+Words analysis by Amardjia Amine.
 
 https://github.com/Layto888/Words-Analysis
 
