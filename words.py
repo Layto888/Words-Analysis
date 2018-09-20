@@ -16,6 +16,7 @@ Usage example: python words.py -f test.txt -d True
 import argparse
 import re
 import sys
+import time
 import platform
 import operator
 from collections import Counter
@@ -135,24 +136,27 @@ def run(filename, write_it):
 
 def display(wa):
     """Display all the stuffs on the screen"""
-    print('Total word count: ', len(wa.words_list(wa.normalized_text)))
-    print('Number of different words: ',
-          len(wa.differents_words_list(wa.normalized_text)))
-    print('Total number of characters: ', len(wa.normal_text))
-    print('Number of characters without spaces: ',
-          wa.all_characters_without_spaces(wa.normal_text))
-    print('Number of spaces: ', wa.number_spaces(wa.normal_text))
-    print('Sentence count: ', len(wa.sentence_split(wa.normalized_text)))
-    print('Average sentence length (Words): ',
-          wa.average_sentence_length(wa.normalized_text))
-    print('Max sentence length (Characters): ',
-          wa.max_sentence_length(wa.normalized_text))
-    print('Min sentence length (Characters): ',
-          wa.min_sentence_length(wa.normalized_text))
-    print('Lexical density: ',
-          lexical_density(wa.words_list(wa.normalized_text), FILE_LEXI), ' %')
-    print('Language: ',
-          deduce_language(wa.words_list(wa.normalized_text), FILE_LEXI))
+    print('Total word count: {}'
+          .format(len(wa.words_list(wa.normalized_text))))
+    print('Number of different words: {}'
+          .format(len(wa.differents_words_list(wa.normalized_text))))
+    print('Total number of characters: {}'.format(len(wa.normal_text)))
+    print('Number of characters without spaces: {}'
+          .format(wa.all_characters_without_spaces(wa.normal_text)))
+    print('Number of spaces: {}'
+          .format(wa.number_spaces(wa.normal_text)))
+    print('Sentence count: {}'
+          .format(len(wa.sentence_split(wa.normalized_text))))
+    print('Average sentence length (Words): {0:.2f}'
+          .format(wa.average_sentence_length(wa.normalized_text)))
+    print('Max sentence length (Characters): {}'
+          .format(wa.max_sentence_length(wa.normalized_text)))
+    print('Min sentence length (Characters): {}'
+          .format(wa.min_sentence_length(wa.normalized_text)))
+    print('Lexical density: {0:.2f}'
+          .format(lexical_density(wa.words_list(wa.normalized_text), FILE_LEXI)))
+    print('Language: {}'
+          .format(deduce_language(wa.words_list(wa.normalized_text), FILE_LEXI)))
     print('\n')
 
 
@@ -162,13 +166,13 @@ def display_top_words(wa, max_display):
     sorted_occurences = sorted(
         counts.items(), key=operator.itemgetter(1), reverse=True)
 
-    print('{0:<30}{1:<30}{2:<30}\n'.format('#Ref', 'Occurrence', 'Perc %'))
+    print('{0:<30}{1:<30}{2:<30}'.format('# Ref', 'Occurrence', 'Perc %'))
 
     for occurence in sorted_occurences:
         cp += 1
         if cp <= max_display:
 
-            print('{0:<30}{1:<30}{2:<30}'.format
+            print('{0:<30}{1:<30}{2:.2f}'.format
                   (
                       occurence[0],
                       occurence[1],
@@ -226,6 +230,16 @@ def deduce_language(words_list, lexi_file_name):
     return 'Not found'
 
 
+def show_process_time(t1_start, t1_stop, t2_start, t2_stop):
+    """
+    function to show elapsed time.
+    """
+    print('\n')
+    print('Elapsed time: {0:.4f} [sec]'.format(t1_stop - t1_start))
+    print('CPU process time: {0:.4f} [sec]'.format(t2_stop - t2_start))
+    print('Done.')
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-f', '--file_name', default='test.txt', required=True,
@@ -236,8 +250,13 @@ def main():
                         ' use True/False to specify', type=bool)
 
     args = parser.parse_args()
+    # compute time perf and time process
+    t1_start = time.perf_counter()
+    t2_start = time.process_time()
     run(args.file_name, args.display)
-    print('Done.')
+    t1_stop = time.perf_counter()
+    t2_stop = time.process_time()
+    show_process_time(t1_start, t1_stop, t2_start, t2_stop)
     return 0
 
 
