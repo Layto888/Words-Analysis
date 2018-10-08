@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/Layto888/Words-Analysis.svg?branch=master)](https://travis-ci.org/Layto888/Words-Analysis/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # words
 Words analysis by Amardjia Amine.
 
